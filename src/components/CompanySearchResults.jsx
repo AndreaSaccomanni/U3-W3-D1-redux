@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Job from "./Job";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const CompanySearchResults = () => {
   const [jobs, setJobs] = useState([]);
+  //
   const params = useParams();
-
-  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?company=";
 
   useEffect(() => {
     getJobs();
@@ -16,7 +15,7 @@ const CompanySearchResults = () => {
 
   const getJobs = async () => {
     try {
-      const response = await fetch(baseEndpoint + params.company);
+      const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?company=" + params.company);
       if (response.ok) {
         const { data } = await response.json();
         setJobs(data);
@@ -33,7 +32,8 @@ const CompanySearchResults = () => {
       <Row>
         <Col className="my-3">
           <h1 className="display-4">Job posting for: {params.company}</h1>
-          {jobs.map(jobData => (
+          <Link to="/favourites">Vai ai preferiti</Link>
+          {jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
           ))}
         </Col>
