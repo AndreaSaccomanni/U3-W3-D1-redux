@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Favourites = () => {
   //creo il collegamento con lo stato a livello globale tramite useSelector
-  //lo state era dichiarato in redux --> index.js ma ora è disponibile anche in Favourites
+  //lo state era dichiarato in redux/index.js ma ora è disponibile anche in Favourites
   //ora companies contiene un array, inizialmente vuoto, ma che verrà riempito successivamente
   const companies = useSelector((state) => state.favourites.content);
   //per ogni elemento dentro a companies si genererà una nuva row contenente il nome della compagnia che è un link allo stesso tempo
